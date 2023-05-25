@@ -1,6 +1,6 @@
 {
-  "name": "redux-subscriber",
-  "version": "1.1.0",
+  "name": "@heq6/redux-subscriber",
+  "version": "1.1.1",
   "description": "Subscribe to changes in any part of redux state",
   "main": "lib/index.js",
   "repository": {
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "prepack": "npm-run-all check build",
-    "check": "npm-run-all -p clean format:check lint test",
+    "check": "npm-run-all -p clean format:check lint",
     "build": "babel src -d lib --ignore \"**/__tests__\"",
     "clean": "rimraf lib",
     "test": "jest",

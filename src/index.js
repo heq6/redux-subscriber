@@ -10,24 +10,21 @@ export function subscribe(key, cb) {
   }
 
   // return "unsubscribe" function
-  return function() {
+  return function sub() {
     subscribers[key] = subscribers[key].filter(s => s !== cb);
   };
 }
 
 export default function(store) {
-  let prevState = store.getState();
-
   store.subscribe(() => {
     const newState = store.getState();
 
     Object.keys(subscribers).forEach(key => {
-      if (get(prevState, key) !== get(newState, key)) {
-        subscribers[key].forEach(cb => cb(newState));
+      const state = get(newState, key);
+      if (state) {
+        subscribers[key].forEach(cb => cb(state));
       }
     });
-
-    prevState = newState;
   });
 
   return subscribe;
